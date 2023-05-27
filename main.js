@@ -1,24 +1,38 @@
-const person = {
-  firstName: 'John',
-  lastName: 'Doe',
-  age: 30,
-  hobbies: ['music', 'movies', 'sport'],
-  address: {
-    street: '50 main st',
-    city: 'boston',
-    state: 'MA',
-  },
-};
+// console.log(window);
 
-// 1. First Way
-// console.log(person.address.street);
-// console.log(person.address);
+const myForm = document.querySelector('#my-form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const msg = document.querySelector('.msg');
+const userList = document.querySelector('#users');
 
-// 2. Second Way
-// const {
-//   firstName,
-//   lastName,
-//   address: { city },
-// } = person;
+myForm.addEventListener('submit', onSubmit);
 
-// console.log(firstName);
+function onSubmit(e) {
+  e.preventDefault();
+
+  if (nameInput.value === '' || emailInput.value === '') {
+    msg.classList.add('ggbanget');
+    msg.innerHTML = 'Please enter all fields';
+
+    setTimeout(() => msg.remove(), 3000);
+  } else {
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+
+    userList.appendChild(li);
+
+    // Clear fields
+    nameInput.value = '';
+    emailInput.value = '';
+  }
+}
+
+// Single Element
+// console.log(document.getElementById('my-form'));
+// console.log(document.querySelector('h1'));
+
+// Multiple Element
+// console.log(document.querySelector('.item'));
+// console.log(document.getElementsByClassName('item'));
+// console.log(document.getElementsByTagName('item'));
